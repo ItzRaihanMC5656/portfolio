@@ -11,18 +11,7 @@ html {
 body {
     margin: 0;
     font-family: monospace;
-    background: linear-gradient(270deg, white, blue, purple, magenta, lightblue);
-    background-size: 600% 600%;
-    animation-name: gradientShift;
-    animation-duration: 10s;
-    animation-iteration-count: infinite;
-    transition: all 0.3s ease;
-}
-
-@keyframes gradientShift {
-    0% {background-position: 0% 50%;}
-    50% {background-position: 100% 50%;}
-    100% {background-position: 0% 50%;}
+    background-color: #f4f4f4;
 }
 
 header {
@@ -163,28 +152,23 @@ footer {
 }
 
 #circle {
-    width: 0;
-    height: 0;
+    display: none;
     border-radius: 50%;
     background-color: rgb(25, 25, 137);
     position: absolute;
-    z-index: 4;
-    bottom: -50px;
-    right: -50px;
-    transition: all 0.3s ease;
-}
-
-#me:hover {
-    filter: grayscale(0%);
-    z-index: 7;
-}
-
-#me:hover + #circle {
     width: 300px;
     height: 300px;
     bottom: -100px;
     right: -100px;
     z-index: 6;
+    transition: all 0.3s ease;
+    animation-name: circle1Animation;
+    animation-duration: 0.5s;
+}
+
+@keyframes circle1Animation {
+    0% { width: 0px; height: 0px; }
+    100% { width: 300px; height: 300px;}
 }
 
 #me-text-container {
@@ -261,26 +245,18 @@ footer {
 }
 
 #circle2 {
-    width: 0;
-    height: 0;
+    display: none;
+    width: 300px;
+    height: 300px;
     border-radius: 50%;
     background-color: rgb(145, 9, 147);
     position: absolute;
     z-index: 4;
-    bottom: -50px;
-    left: -50px;
-    transition: all 0.3s ease;
-}
-
-#me2:hover {
-    filter: brightness(100%);
-}
-
-#me2:hover + #circle2 {
-    width: 300px;
-    height: 300px;
     bottom: -100px;
     left: -100px;
+    transition: all 0.3s ease;
+    animation-name: circle1Animation;
+    animation-duration: 0.5s;
 }
 
 #about-content p {
@@ -304,21 +280,14 @@ footer {
 #project-list li {
     background-color: white;
     color: black;
-    padding: 10px;
+    padding: 30px;
     border-radius: 5px;
     border: 2px solid black;
-    width: 120px;
-    height: 120px;
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-#project-list li a {
-    text-decoration: none;
-    color: black;
 }
 
 #project-list li p {
@@ -339,6 +308,11 @@ footer {
     color: white;
 }
 
+#project-description {
+    text-align: justify;
+    min-width: 200px;
+}
+
 #project-images-shower {
     display: none;
     position: fixed;
@@ -346,12 +320,23 @@ footer {
     left: 0;
     width: 100%;
     height: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     background-color: rgba(122, 122, 122, 0.5);
     backdrop-filter: blur(5px);
     animation-name: blurAnimation;
-    animation-duration: 1s; 
+    animation-duration: 3s; 
     z-index: 30;
     transition: all 0.3s ease;
+}
+
+#announcement {
+    color: red;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid black;
 }
 
 #project-images-container {
@@ -360,14 +345,20 @@ footer {
     justify-content: center;
     align-items: center;
     gap: 20px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     background-color: white;
     padding: 20px;
     border-radius: 5px;
     overflow: hidden;
+    max-width: auto;
+    transform: scale(1);
+    transition: all 0.3s ease;
+    animation-name: scaled-animation;
+    animation-duration: 0.5s;
+}
+
+@keyframes scaled-animation {
+    0% { transform: scale(0.1); }
+    100% { transform: scale(1); }
 }
 
 #project-images-slider {
@@ -376,7 +367,7 @@ footer {
     justify-content: center;
     align-items: center;
     gap: 15px;
-
+    max-width: 300px;
 }
 
 #project-images-slider img {
@@ -424,6 +415,76 @@ footer {
     color: white;
 }
 
+#edubg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#edubg h2 {
+    margin-bottom: 50px;
+}
+
+#edubg ul {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center;
+    align-items: left;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#edubg li {
+    display: inline;
+    padding: 10px;
+    background-color: lightskyblue;
+    border-radius: 5px;
+    border: 2px solid black;
+    transition: all 0.3s ease;
+}
+
+#edubg li:hover {
+    transform: scale(1.05);
+}
+
+#achexp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#achexp h2 {
+    margin-bottom: 50px;
+}
+
+#achexp ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: left;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#achexp li {
+    display: inline;
+    padding: 10px;
+    background-color: magenta;
+    border: 2px solid black;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+#achexp li:hover {
+    transform: scale(1.05);
+}
+
 @media only screen and (min-width: 600px) {
     nav {
         display: block;
@@ -434,32 +495,37 @@ footer {
         height: 350px;
     }
 
-    #me:hover + #circle {
-        width: 400px;
-        height: 400px;
-        bottom: -100px;
-        right: -100px;
-        z-index: 6;
-    }
-
-    #me2:hover + #circle2 {
-        width: 400px;
-        height: 400px;
-        bottom: -100px;
-        left: -100px;
-    }
-
     #me2 {
         width: 270px;
         height: 380px;
+    }
+
+    #circle1 {
+        width: 400px;
+        height: 400px;
+    }
+
+    #circle2 {
+        width: 400px;
+        height: 400px;
+    }
+
+    @keyframes circle1Animation {
+        0% { width: 0px; height: 0px; }
+        100% { width: 400px; height: 400px;}
     }
 
     #toollist {
         max-width: 50%;
     }
 
+    #project-list li {
+        padding: 50px;
+    }
+
     section {
         max-width: 800px;
+        width: 100%;
         min-height: 400px;
     }
 }
@@ -516,5 +582,9 @@ footer {
         padding: 10px;
         margin: 10px;
         z-index: 30;
+    }
+
+    section {
+        min-width: 450px;
     }
 }

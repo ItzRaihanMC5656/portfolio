@@ -10,10 +10,16 @@ const nav = document.querySelector('nav');
 const toollist = document.getElementById("toollist")
 const mobileScreenExit = document.getElementById("mobile-screen-exit")
 const projectList = document.getElementById("project-list")
+const projectDescription = document.getElementById("project-description")
 const projectImagesShower = document.getElementById("project-images-shower")
 const projectImagesSlider = document.getElementById("project-images-slider")
 const projectImageNavPrev = document.getElementById("prev-image")
 const projectImageNavNext = document.getElementById("next-image")
+
+const me1 = document.getElementById("me")
+const me2 = document.getElementById("me2")
+const circle1 = document.getElementById("circle")
+const circle2 = document.getElementById("circle2")
 
 const tools = [
     {nama: 'PHP', range: 70, bgcolor: '#777BB3', color: '#222222'}, 
@@ -31,12 +37,9 @@ const rangeColor = [
 ]
 
 const projects = [
-    {nama: 'Project 1', desc: 'Description of Project 1', images: ['project1.jpg', 'project2.jpg', 'project3.jpg']},
-    {nama: 'Project 2', desc: 'Description of Project 2', images: ['project1.jpg', 'project1.jpg', 'project1.jpg']},
-    {nama: 'Project 3', desc: 'Description of Project 3', images: ['project1.jpg', 'project1.jpg', 'project1.jpg']},
-    {nama: 'Project 1', desc: 'Description of Project 1', images: ['project1.jpg', 'project1.jpg', 'project1.jpg']},
-    {nama: 'Project 2', desc: 'Description of Project 2', images: ['project1.jpg', 'project1.jpg', 'project1.jpg']},
-    {nama: 'Project 3', desc: 'Description of Project 3', images: ['project1.jpg', 'project1.jpg', 'project1.jpg']}
+    {nama: 'Simple Calculator', desc: 'Calculator Website With ReactJS & Styled with TailwindCSS', images: ['calculator1.png', 'calculator2.png']},
+    {nama: 'Traffic Simulator', desc: 'Traffic Simulation without Traffic Light, created with pure HTML CSS JS', images: []},
+    {nama: 'Minecraft Plugins', desc: 'Plugin for PocketMine MP Server (for more picture, you can see my youtube channel)', images: ['plugin.png']}
 ]
 
 tools.forEach((tool) => {
@@ -58,10 +61,7 @@ projects.forEach((project, id) => {
     let li = document.createElement('li')
     let title = document.createElement('p')
     title.textContent = project.nama
-    let p = document.createElement('p')
-    p.textContent = project.desc
     li.appendChild(title)
-    li.appendChild(p)
     li.addEventListener('click', () => {
         selectedProject = id
         openImageSlider()
@@ -76,12 +76,26 @@ projectImagesShower.addEventListener('click', (e) => {
 })
 
 function openImageSlider() {
-    projectImagesShower.style.display = "block";
+    projectImagesShower.style.display = "flex";
+    projectDescription.textContent = projects[selectedProject].desc
+    let currentImage = document.getElementById("project-image")
+    
+    currentImage.style.display = "block"
+    projectImageNavNext.style.display = "block"
+    projectImageNavPrev.style.display = "block"
+    if(projects[selectedProject].images.length < 1){
+        currentImage.style.display = "none"
+    }
+    if(projects[selectedProject].images.length < 2){
+        projectImageNavNext.style.display = "none"
+        projectImageNavPrev.style.display = "none"
+    }
+    currentImage.src = "asset/projects/" + projects[selectedProject].images[0]
 }
 
 projectImageNavNext.addEventListener('click', () => {
     let currentImage = document.getElementById("project-image")
-    let currentIndex = projects[selectedProject].images.indexOf(currentImage.src.split('/').pop())
+    let currentIndex = currentImage.src.length < 1 ? 0 : projects[selectedProject].images.indexOf(currentImage.src.split('/').pop())
     let nextIndex = (currentIndex + 1) % projects[selectedProject].images.length
     currentImage.src = "asset/projects/" + projects[selectedProject].images[nextIndex]
 })
@@ -103,13 +117,22 @@ function onResize() {
 
 function init(resize = false) {
     setTimeout(() => {
-        selector.style.left = `${links[selected].offsetLeft - 20}px`;
-        selector.style.top = `${links[selected].offsetTop - 2}px`;
+        selector.style.left = `${links[selected < 0 ? 0 : selected].offsetLeft - 20}px`;
+        selector.style.top = `${links[selected < 0 ? 0 : selected].offsetTop - 2}px`;
     }, resize ? (window.innerWidth > 600 ? 0 : 300) : 0);
     if(window.innerWidth > 600) {
         nav.style.display = 'block';
         nav.style.transform = 'translateX(0) translateY(10px)';
         mobileScreenExit.style.display = 'none';
+    }
+    if(sectionSelected == 0){
+        me1.style.filter = 'grayscale(0%)'
+        me1.style.zIndex = 7
+        circle1.style.display = "block"
+    }else{
+        me1.style.filter = 'grayscale(100%)'
+        me1.style.zIndex = 5
+        circle1.style.display = "none"
     }
 }
 
@@ -170,11 +193,30 @@ sections.forEach((section, i) => {
             if(sectionSelected > -1) sections[sectionSelected].classList.remove("selected")
             section.classList.add("selected")
             sectionSelected = i
+            changeSelector(i)
         }else{
             sections[i].classList.remove("selected")
             sectionSelected = -1
+            changeSelector(0)
+        }
+        if(sectionSelected == 0){
+            me1.style.filter = 'grayscale(0%)'
+            me1.style.zIndex = 7
+            circle1.style.display = "block"
+        }else{
+            me1.style.filter = 'grayscale(100%)'
+            me1.style.zIndex = 5
+            circle1.style.display = "none"
+        }
+        if(sectionSelected == 1){
+            me2.style.filter = 'brightness(100%)'
+            me2.style.zIndex = 7
+            circle2.style.display = "block"
+        }else{
+            me2.style.filter = 'brightness(0%)'
+            me2.style.zIndex = 5
+            circle2.style.display = "none"
         }
         selected = sectionSelected
-        changeSelector(i)
     })
 })
