@@ -1,0 +1,70 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raihan Mufidan Hafizh</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body onload="initLoad()" onresize="onResize()">
+    <header>
+        <div id="nav-button-mobile">=</div>
+        <div id="mobile-screen-exit"></div>
+        <nav>
+            <div id="selector">Home</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#goals">Goals</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="home" class="selected">
+            <div id="me-text-container">
+                <h2>Raihan Mufidan Hafizh</h2>
+                <p id="role-switch">Hi! I'm a Junior Fullstack Developer that use:  </p>
+                <div id="toollist"></div>
+            </div>
+            <img id="me" src="asset/me.png" alt="Raihan Mufidan Hafizh">
+            <div id="circle"></div>
+        </section>
+        <section id="about">
+            <h2>Who Am I?</h2>
+            <div id="about-content">
+                <p>I'm a student passionate about IT, especially programming. I started learning PHP during the COVID-19 pandemic and now explore web development, software engineering, and IoT. I enjoy backend logic and data processing, while also creating visually appealing user interfaces.</p>
+            </div>
+            <img id="me2" src="asset/me2.png" alt="Raihan Mufidan Hafizh 2">
+            <div id="circle2"></div>
+        </section>
+        <section id="projects">
+            <h2>Projects</h2>
+            <p>Here are some of my completed projects:</p>
+            <ul id="project-list">
+            </ul>
+        </section>
+        <div id="project-images-shower">
+            <div id="project-images-container">
+                <div class="project-image-nav" id="prev-image"><</div>
+                <div id="project-images-slider">
+                    <img id="project-image" src="asset/projects/project1.jpg" alt="Project Image">
+                </div>
+                <div class="project-image-nav" id="next-image">></div>
+            </div>
+        </div>
+        <section id="goals">
+            <h2>Goals</h2>
+            <p>My future goals include:</p>
+            <ul>
+                <li>Continuing to improve my web development skills</li>
+                <li>Contributing to open-source projects</li>
+                <li>Building a personal brand in the tech industry</li>
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 Raihan Mufidan Hafizh. All rights reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
